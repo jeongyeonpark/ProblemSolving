@@ -3,4 +3,5 @@ class Solution:
         for rn in ransomNote:
             if ransomNote.count(rn) > magazine.count(rn):
                 return False
+                break
         return True
