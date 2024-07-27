@@ -22,18 +22,20 @@ class Solution:
         #     else:
         #         return True
         # return False
+
+
+        #####################
         if not head:
             return False
 
-        node = head
-
         visited_node =[]
         
-        while node.next:
-            id_node = id(node)
-            if id_node in visited_node:
+        while head.next:
+            id_node = id(head)
+            if id_node not in visited_node:
+                visited_node.append(id_node)
+                head = head.next
+            else:
                 return True
-            visited_node.append(id_node)
-            node = node.next
 
         return False
