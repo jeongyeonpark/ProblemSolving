@@ -52,7 +52,6 @@ class Solution:
                 else:
                     w +=1
                     new_path+=path[i]
-            print(f'new_path:{new_path}, n:{n}, w:{w}, d:{d}')
 
         if len(new_path)==0:
             return '/'
