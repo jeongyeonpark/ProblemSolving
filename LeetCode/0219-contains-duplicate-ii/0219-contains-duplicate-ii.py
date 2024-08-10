@@ -12,13 +12,11 @@ class Solution:
 
         li = set()
         i = 0
-        for idx,val in enumerate(nums):
-            print(li, val)
+        for val in nums:
             if val in li:
                 return True
-            else:
-                if len(li) >= k:
-                    li.remove(nums[i-k])
-                li.add(val)
-                i+=1
+            li.add(val)
+            if len(li) > k:
+                li.remove(nums[i-k])
+            i+=1
         return False
