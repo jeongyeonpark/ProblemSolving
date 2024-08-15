@@ -9,21 +9,18 @@ class Solution:
         if not root:
             return []
 
-        nodes = []
-        next_nodes = [root]
-
-        while next_nodes:
-            curr_nodes, next_nodes = next_nodes, []
+        result = []
+        nodes = [root]
+        while nodes:
             depth_nodes = []
-    
-            while len(curr_nodes)>0:
-                curr_node = curr_nodes.pop(0)
+            for _ in range(len(nodes)):
+                curr_node = nodes.pop(0)
                 depth_nodes.append(curr_node.val)
 
-                if curr_node.left  != None:
-                    next_nodes.append(curr_node.left)
-                if curr_node.right != None:
-                    next_nodes.append(curr_node.right)
-            nodes.append(depth_nodes)
+                if curr_node.left:
+                    nodes.append(curr_node.left)
+                if curr_node.right:
+                    nodes.append(curr_node.right)
+            result.append(depth_nodes)
 
-        return nodes
+        return result
