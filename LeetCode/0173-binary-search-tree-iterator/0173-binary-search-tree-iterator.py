@@ -19,24 +19,39 @@ class BSTIterator:
             n = self.curr_node.right
             self.que.appendleft(n)
             n_left = n.left
-            if n_left:
-                while n_left:
-                    self.que.appendleft(n_left)
-                    n_left = n_left.left
+            while n_left:
+                self.que.appendleft(n_left)
+                n_left = n_left.left
         return self.curr_node.val
 
     def hasNext(self) -> bool:
-        if len(self.que) < 1:
-            return False
-        return True
-        # if len(self.que) > 0:
-        #     return True
-        # next_node = self.que.popleft()
-        # self.que.appendleft(next_node)
-        # if self.curr_node.val < next_node.val:
-        #     return True
-        # return False
+        return len(self.que) > 0
         
+
+
+    # def __init__(self, root: TreeNode):
+    #     self.stack = []
+    #     self._leftmost_inorder(root)
+
+    # # 왼쪽 자식들을 스택에 모두 넣음
+    # def _leftmost_inorder(self, root):
+    #     while root:
+    #         self.stack.append(root)
+    #         root = root.left
+
+    # def next(self) -> int:
+    #     # 스택의 최상단 요소가 다음 노드가 됨
+    #     topmost_node = self.stack.pop()
+        
+    #     # 해당 노드의 오른쪽 자식이 있는 경우, 그 자식의 모든 왼쪽 자식을 스택에 추가
+    #     if topmost_node.right:
+    #         self._leftmost_inorder(topmost_node.right)
+        
+    #     return topmost_node.val
+
+    # def hasNext(self) -> bool:
+    #     return len(self.stack) > 0
+
 
 
 # Your BSTIterator object will be instantiated and called as such:
