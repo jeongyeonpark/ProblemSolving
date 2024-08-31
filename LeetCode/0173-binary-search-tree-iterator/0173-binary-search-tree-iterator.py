@@ -16,9 +16,8 @@ class BSTIterator:
     def next(self) -> int:
         self.curr_node = self.que.popleft()
         if self.curr_node.right:
-            n = self.curr_node.right
-            self.que.appendleft(n)
-            n_left = n.left
+            self.que.appendleft(self.curr_node.right)
+            n_left = self.curr_node.right.left
             while n_left:
                 self.que.appendleft(n_left)
                 n_left = n_left.left
