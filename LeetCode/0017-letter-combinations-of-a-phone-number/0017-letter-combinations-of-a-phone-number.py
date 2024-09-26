@@ -4,7 +4,7 @@ class Solution:
             return []
 
         result = []
-        char = {'2':['a','b','c'],
+        char_map = {'2':['a','b','c'],
                 '3':['d','e','f'],
                 '4':['g','h','i'],
                 '5':['j','k','l'],
@@ -13,14 +13,13 @@ class Solution:
                 '8':['t','u','v'],
                 '9':['w','x','y','z']}
         
-        def merge_char(word, next_list):
-            if len(next_list) > 0:
-                w_list = char[next_list[0]]
-                for w in w_list:
-                    merge_char(word+w, next_list[1:])
+        def backtrack(current_combination, remaining_digits):
+            if not remaining_digits:
+                result.append(current_combination)
             else:
-                result.append(word)
-                return
-        merge_char('',digits)
+                for letter in char_map[remaining_digits[0]]:
+                    backtrack(current_combination + letter, remaining_digits[1:])
+
+        backtrack('',digits)
 
         return result
