@@ -6,25 +6,13 @@
 #         self.right = None 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        def tree_list(curr_node, node_list, val):
-            if curr_node is None:
-                return None
-            node_list.append(curr_node)
-            if curr_node == val:
-                return node_list
+        if not root or p==root or q==root:
+            return root
 
-            left_result = tree_list(curr_node.left, node_list[:], val)
-            if left_result:
-                return left_result
+        l = self.lowestCommonAncestor(root.left, p, q)
+        r = self.lowestCommonAncestor(root.right, p, q)
 
-            right_result = tree_list(curr_node.right, node_list[:], val)
-            if right_result:
-                return right_result
-
-            return None
-
-        p_list = tree_list(root, [], p)
-        q_list = tree_list(root, [], q)
-        for i in range(min(len(p_list),len(q_list))-1, -1, -1):
-            if p_list[i].val == q_list[i].val:
-                return p_list[i]
+        if l and r:
+            return root
+        
+        return l or r
