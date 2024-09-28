@@ -9,9 +9,8 @@ class Solution:
         def tree_list(curr_node, node_list, val):
             if curr_node is None:
                 return None
-            curr_val = curr_node.val
             node_list.append(curr_node)
-            if curr_val == val:
+            if curr_node == val:
                 return node_list
 
             left_result = tree_list(curr_node.left, node_list[:], val)
@@ -24,8 +23,8 @@ class Solution:
 
             return None
 
-        p_list = tree_list(root, [], p.val)
-        q_list = tree_list(root, [], q.val)
+        p_list = tree_list(root, [], p)
+        q_list = tree_list(root, [], q)
         for i in range(min(len(p_list),len(q_list))-1, -1, -1):
             if p_list[i].val == q_list[i].val:
                 return p_list[i]
